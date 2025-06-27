@@ -1,18 +1,24 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, Bed, Bath, Square, MapPin, Heart, Star, 
-  Building, Quote, UserCheck, MessageSquare
+  Building, Quote, UserCheck, MessageSquare, Home
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
+import { useNavigate } from 'react-router-dom';
 
-const SearchBar = ({ onSearch, className }) => {
+// Tipado de props para SearchBar
+interface SearchBarProps {
+  onSearch: () => void;
+  className?: string;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
   const [locationValue, setLocationValue] = useState('');
   const { toast } = useToast();
 
@@ -26,14 +32,14 @@ const SearchBar = ({ onSearch, className }) => {
     }
   };
 
-  const handleLocationKeyPress = (e) => {
+  const handleLocationKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleLocationSearch();
     }
   };
 
   return (
-    <div className={`glass-effect p-4 sm:p-6 rounded-2xl shadow-2xl shadow-black/30 w-full max-w-3xl mx-auto ${className}`}>
+    <div className={`glass-effect p-4 sm:p-6 rounded-2xl shadow-2xl shadow-black/30 w-full max-w-3xl mx-auto ${className ?? ''}`}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-300">Ubicación</label>
@@ -42,10 +48,11 @@ const SearchBar = ({ onSearch, className }) => {
               placeholder="Comuna, barrio..." 
               className="bg-slate-800/50 border-slate-600 text-white pl-10" 
               value={locationValue}
-              onChange={(e) => setLocationValue(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocationValue(e.target.value)}
               onKeyPress={handleLocationKeyPress}
             />
             <button
+              type="button"
               onClick={handleLocationSearch}
               className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-400 transition-colors"
             >
@@ -80,7 +87,7 @@ const SearchBar = ({ onSearch, className }) => {
             </SelectContent>
           </Select>
         </div>
-        <Button onClick={onSearch} className="w-full bg-blue-600 hover:bg-blue-700 text-white md:h-10">
+        <Button onClick={onSearch} className="w-full bg-blue-600 hover:bg-blue-700 text-white md:h-10" type="button">
           <Search className="w-5 h-5 mr-2 md:mr-0" />
           <span className="md:hidden">Buscar</span>
         </Button>
@@ -89,15 +96,15 @@ const SearchBar = ({ onSearch, className }) => {
   );
 };
 
-
 const HomePage = () => {
   const { toast } = useToast();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const searchRef = useRef(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setIsSearchVisible(false);
       }
     };
@@ -110,7 +117,7 @@ const HomePage = () => {
   }, [isSearchVisible]);
 
 
-  const handleActionClick = (featureName) => {
+  const handleActionClick = (featureName: string) => {
     toast({
       title: `🚧 ${featureName} no implementado`,
       description: "¡No te preocupes! Puedes solicitar esta función en tu próximo mensaje 🚀",
@@ -120,13 +127,40 @@ const HomePage = () => {
 
   const featuredProperties = [
     {
-      id: 1, title: 'Departamento Moderno en Las Condes', type: 'Departamento', price: '$450.000.000', location: 'Las Condes, Santiago', bedrooms: 3, bathrooms: 2, area: 120, image: 'Modern luxury apartment with city skyline view', featured: true,
+      id: 1,
+      title: 'Departamento Moderno en Las Condes',
+      type: 'Departamento',
+      price: '$450.000.000',
+      location: 'Las Condes, Santiago',
+      bedrooms: 3,
+      bathrooms: 2,
+      area: 120,
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
+      featured: true,
     },
     {
-      id: 2, title: 'Casa Familiar en Providencia', type: 'Casa', price: '$680.000.000', location: 'Providencia, Santiago', bedrooms: 4, bathrooms: 3, area: 180, image: 'Beautiful family house with garden and modern architecture', featured: true,
+      id: 2,
+      title: 'Casa Familiar en Providencia',
+      type: 'Casa',
+      price: '$680.000.000',
+      location: 'Providencia, Santiago',
+      bedrooms: 4,
+      bathrooms: 3,
+      area: 180,
+      image: 'https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=600&q=80',
+      featured: true,
     },
     {
-      id: 3, title: 'Penthouse de Lujo en Vitacura', type: 'Penthouse', price: '$1.200.000.000', location: 'Vitacura, Santiago', bedrooms: 4, bathrooms: 4, area: 250, image: 'Luxury penthouse with panoramic city views and modern design', featured: true,
+      id: 3,
+      title: 'Penthouse de Lujo en Vitacura',
+      type: 'Penthouse',
+      price: '$1.200.000.000',
+      location: 'Vitacura, Santiago',
+      bedrooms: 4,
+      bathrooms: 4,
+      area: 250,
+      image: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80',
+      featured: true,
     },
   ];
 
@@ -161,7 +195,7 @@ const HomePage = () => {
 
       <div className="bg-[#0B1120] text-white overflow-x-hidden">
         {/* Hero Section */}
-        <section className="relative h-[60vh] flex flex-col items-center justify-center hero-bg overflow-hidden pt-20">
+        <section className="relative h-[40vh] flex flex-col items-center justify-center hero-bg overflow-hidden pt-20">
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col items-center">
             <motion.div
@@ -228,31 +262,61 @@ const HomePage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {featuredProperties.map((p, i) => (
-                  <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }}
-                    className="property-card rounded-2xl overflow-hidden cursor-pointer group" onClick={() => handleActionClick('Ver propiedad')}>
-                    <div className="relative overflow-hidden">
-                      <img-replace  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt={p.image} />
-                      <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">{p.type}</div>
-                      <button onClick={(e) => { e.stopPropagation(); handleActionClick('Favoritos'); }}
-                        className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:text-red-500 hover:bg-white/20 transition-all duration-200">
-                        <Heart className="w-5 h-5" />
+                  <motion.div
+                    key={p.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="property-card group rounded-3xl overflow-hidden shadow-2xl bg-slate-900/80 border border-slate-700 hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer flex flex-col"
+                    onClick={() => handleActionClick('Ver propiedad')}
+                  >
+                    <div className="relative overflow-hidden h-56">
+                      <img
+                        src={p.image}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        alt={p.title}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${p.type === 'Departamento' ? 'bg-blue-600' : p.type === 'Casa' ? 'bg-green-600' : 'bg-purple-600'} text-white shadow-lg`}> 
+                        {p.type === 'Departamento' && <Building className="w-4 h-4" />} 
+                        {p.type === 'Casa' && <Home className="w-4 h-4" />} 
+                        {p.type === 'Penthouse' && <Star className="w-4 h-4" />} 
+                        {p.type}
+                      </div>
+                      <button
+                        onClick={e => { e.stopPropagation(); handleActionClick('Favoritos'); }}
+                        className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:text-red-500 hover:bg-white/20 transition-all duration-200 group-hover:scale-110"
+                      >
+                        <Heart className="w-5 h-5 transition-transform duration-200 group-hover:scale-125" />
                       </button>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">{p.title}</h3>
-                      <div className="flex items-center space-x-2 text-gray-400 text-sm mb-4"><MapPin className="w-4 h-4" /><span>{p.location}</span></div>
-                      <div className="text-2xl font-bold gradient-text mb-4">{p.price}</div>
-                      <div className="flex items-center justify-between text-gray-400 text-sm border-t border-slate-700 pt-4">
-                        <div className="flex items-center space-x-1"><Bed className="w-4 h-4" /><span>{p.bedrooms}</span></div>
-                        <div className="flex items-center space-x-1"><Bath className="w-4 h-4" /><span>{p.bathrooms}</span></div>
-                        <div className="flex items-center space-x-1"><Square className="w-4 h-4" /><span>{p.area}m²</span></div>
+                    <div className="flex-1 flex flex-col p-6">
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{p.title}</h3>
+                      <div className="flex items-center space-x-2 text-gray-400 text-sm mb-2">
+                        <MapPin className="w-4 h-4" />
+                        <span>{p.location}</span>
+                      </div>
+                      <div className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">{p.price}</div>
+                      <div className="flex items-center justify-between text-gray-300 text-base border-t border-slate-700 pt-4 mb-4">
+                        <div className="flex items-center gap-1"><Bed className="w-5 h-5" /><span>{p.bedrooms}</span></div>
+                        <div className="flex items-center gap-1"><Bath className="w-5 h-5" /><span>{p.bathrooms}</span></div>
+                        <div className="flex items-center gap-1"><Square className="w-5 h-5" /><span>{p.area}m²</span></div>
+                      </div>
+                      <div className="mt-auto flex justify-end">
+                        <button
+                          onClick={e => { e.stopPropagation(); handleActionClick('Detalles'); }}
+                          className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all"
+                        >
+                          Ver detalles
+                        </button>
                       </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
               <div className="text-center mt-12">
-                <Button size="lg" variant="outline" onClick={() => handleActionClick('Ver todas')} className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 px-8 py-3">Ver Todas las Propiedades</Button>
+                <Button size="lg" variant="outline" onClick={() => navigate('/features-properties')} className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 px-8 py-3">Ver Todas las Propiedades</Button>
               </div>
             </div>
           </motion.section>
@@ -289,7 +353,7 @@ const HomePage = () => {
                 {featuredAgents.map((agent, i) => (
                   <motion.div key={agent.id} className="text-center" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.2 }} viewport={{ once: true }}>
                     <div className="relative w-48 h-48 mx-auto mb-4">
-                      <img-replace  className="rounded-full w-full h-full object-cover" alt={agent.image} />
+                      <img className="rounded-full w-full h-full object-cover" alt={agent.name} src={`https://source.unsplash.com/featured/?${encodeURIComponent(agent.specialty)},real-estate,agent`} />
                       <div className="absolute inset-0 rounded-full border-2 border-blue-500/50"></div>
                     </div>
                     <h3 className="text-2xl font-semibold text-white">{agent.name}</h3>
@@ -313,7 +377,7 @@ const HomePage = () => {
                             <Quote className="w-10 h-10 text-blue-500 mb-4" />
                             <p className="text-lg text-gray-300 mb-6 italic">"{t.quote}"</p>
                             <div className="flex items-center">
-                                <img-replace  className="w-12 h-12 rounded-full object-cover mr-4" alt={t.image} />
+                                <img className="w-12 h-12 rounded-full object-cover mr-4" alt={t.name} src={`https://source.unsplash.com/featured/?${encodeURIComponent(t.name)},family,real-estate`} />
                                 <div>
                                     <p className="font-semibold text-white">{t.name}</p>
                                     <div className="flex text-yellow-400">

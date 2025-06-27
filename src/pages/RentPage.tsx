@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/use-toast';
 
-const AgentesPage = () => {
+const RentPage: React.FC = () => {
   const { toast } = useToast();
 
   React.useEffect(() => {
@@ -17,8 +17,8 @@ const AgentesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Nuestros Agentes - ProPlus</title>
-        <meta name="description" content="Conoce a nuestro equipo de agentes inmobiliarios expertos en ProPlus. Profesionales comprometidos con tu éxito." />
+        <title>Arrendar Propiedades - ProPlus</title>
+        <meta name="description" content="Encuentra propiedades en arriendo en Santiago. La mejor selección de arriendos con ProPlus." />
       </Helmet>
 
       <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8">
@@ -29,10 +29,10 @@ const AgentesPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold text-white mb-6">
-              Nuestros <span className="gradient-text">Agentes</span>
+              Arrendar <span className="gradient-text">Propiedades</span>
             </h1>
             <p className="text-xl text-gray-400">
-              Esta página estará disponible pronto con información de nuestro equipo.
+              Esta página estará disponible pronto con todas las propiedades en arriendo.
             </p>
           </motion.div>
         </div>
@@ -41,4 +41,4 @@ const AgentesPage = () => {
   );
 };
 
-export default AgentesPage;
+export default RentPage;

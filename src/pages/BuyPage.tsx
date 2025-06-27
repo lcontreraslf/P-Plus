@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/use-toast';
 
-const LoginPage = () => {
+const BuyPage: React.FC = () => {
   const { toast } = useToast();
 
   React.useEffect(() => {
@@ -17,8 +17,8 @@ const LoginPage = () => {
   return (
     <>
       <Helmet>
-        <title>Iniciar Sesión - ProPlus</title>
-        <meta name="description" content="Accede a tu cuenta de ProPlus para gestionar tus propiedades favoritas y recibir alertas personalizadas." />
+        <title>Comprar Propiedades - ProPlus</title>
+        <meta name="description" content="Encuentra tu propiedad ideal para comprar en Santiago. Casas, departamentos y más con ProPlus." />
       </Helmet>
 
       <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8">
@@ -29,10 +29,10 @@ const LoginPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold text-white mb-6">
-              Iniciar <span className="gradient-text">Sesión</span>
+              Comprar <span className="gradient-text">Propiedades</span>
             </h1>
             <p className="text-xl text-gray-400">
-              Esta página estará disponible pronto con el sistema de autenticación.
+              Esta página estará disponible pronto con todas las propiedades en venta.
             </p>
           </motion.div>
         </div>
@@ -41,4 +41,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default BuyPage;

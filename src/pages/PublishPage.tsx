@@ -6,7 +6,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Building2, ArrowLeft } from 'lucide-react';
 
-const PublicarPage = () => {
+const PublishPage: React.FC = () => {
   const { toast } = useToast();
 
   React.useEffect(() => {
@@ -67,4 +67,4 @@ const PublicarPage = () => {
   );
 };
 
-export default PublicarPage;
+export default PublishPage;

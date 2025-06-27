@@ -1,30 +1,41 @@
-
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 
-const AuthModals = ({ isOpen, onClose, initialMode = 'login' }) => {
-  const [mode, setMode] = useState(initialMode);
+interface AuthModalsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  initialMode?: 'login' | 'register';
+}
+
+interface FormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+const AuthModals: React.FC<AuthModalsProps> = ({ isOpen, onClose, initialMode = 'login' }) => {
+  const [mode, setMode] = useState<'login' | 'register'>(initialMode);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
     confirmPassword: ''
   });
   const { toast } = useToast();
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Validación para registro
@@ -45,7 +56,7 @@ const AuthModals = ({ isOpen, onClose, initialMode = 'login' }) => {
     });
   };
 
-  const handleSocialAuth = (provider) => {
+  const handleSocialAuth = (provider: string) => {
     toast({
       title: `🚧 Inicio de sesión con ${provider} no implementado`,
       description: "¡No te preocupes! Puedes solicitar esta función en tu próximo mensaje 🚀",

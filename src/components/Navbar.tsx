@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,20 +6,26 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import AuthModals from '@/components/AuthModals';
 
-const Navbar = () => {
+interface NavItem {
+  name: string;
+  path: string;
+  icon: React.ElementType;
+}
+
+const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: 'Comprar', path: '/comprar', icon: ShoppingCart },
     { name: 'Arrendar', path: '/arrendar', icon: Key },
     { name: 'Agentes', path: '/agentes', icon: Users },
     { name: 'Publicar', path: '/publicar', icon: PlusCircle },
   ];
 
-  const handleNavClick = (path, name) => {
+  const handleNavClick = (path: string, name: string) => {
     if (path !== '/') {
       toast({
         title: "🚧 Esta función no está implementada aún",
@@ -37,8 +42,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 navbar-blur">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Navbar principal con z-index alto y ancho completo */}
+      <nav className="fixed top-0 left-0 right-0 z-[9999] navbar-blur border-b border-slate-700 w-full">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
@@ -50,18 +56,17 @@ const Navbar = () => {
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation: visible solo en md+ */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.path;
-                
                 return (
                   <Link
                     key={item.name}
                     to={item.path}
                     onClick={() => handleNavClick(item.path, item.name)}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-200 ${
+                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-200 text-white ${
                       isActive
                         ? 'text-blue-400 bg-blue-500/10'
                         : 'text-gray-300 hover:text-white hover:bg-white/5'
@@ -72,7 +77,6 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              
               <Button 
                 variant="outline" 
                 className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10"
@@ -83,20 +87,21 @@ const Navbar = () => {
               </Button>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button: visible solo en móvil */}
             <div className="md:hidden">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-gray-300 hover:text-white"
+                aria-label="Abrir menú"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </Button>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation: visible solo en móvil */}
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -108,7 +113,6 @@ const Navbar = () => {
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.path;
-                  
                   return (
                     <Link
                       key={item.name}
@@ -128,7 +132,6 @@ const Navbar = () => {
                     </Link>
                   );
                 })}
-                
                 <button
                   onClick={handleLoginClick}
                   className="flex items-center space-x-3 px-4 py-3 rounded-lg text-blue-400 hover:bg-blue-500/10 transition-all duration-200"

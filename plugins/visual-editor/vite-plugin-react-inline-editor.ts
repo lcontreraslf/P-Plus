@@ -11,15 +11,15 @@ const __dirname = path.dirname(__filename);
 const VITE_PROJECT_ROOT = path.resolve(__dirname, '../..');
 const EDITABLE_HTML_TAGS = ["a", "Button", "button", "p", "span", "h1", "h2", "h3", "h4"];
 
-function parseEditId(editId) {
+function parseEditId(editId: string): { filePath: string; line: number; column: number } | null {
   const parts = editId.split(':');
 
   if (parts.length < 3) {
     return null;
   }
 
-  const column = parseInt(parts.at(-1), 10);
-  const line = parseInt(parts.at(-2), 10);
+  const column = parseInt(parts.at(-1) as string, 10);
+  const line = parseInt(parts.at(-2) as string, 10);
   const filePath = parts.slice(0, -2).join(':');
 
   if (!filePath || isNaN(line) || isNaN(column)) {
@@ -29,7 +29,7 @@ function parseEditId(editId) {
   return { filePath, line, column };
 }
 
-function checkTagNameEditable(openingElementNode, editableTagsList) {
+function checkTagNameEditable(openingElementNode: any, editableTagsList: string[]): boolean {
     if (!openingElementNode || !openingElementNode.name) return false;
     const nameNode = openingElementNode.name;
 

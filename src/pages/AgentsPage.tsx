@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/use-toast';
 
-const ComprarPage = () => {
+const AgentsPage: React.FC = () => {
   const { toast } = useToast();
 
   React.useEffect(() => {
@@ -17,8 +17,8 @@ const ComprarPage = () => {
   return (
     <>
       <Helmet>
-        <title>Comprar Propiedades - ProPlus</title>
-        <meta name="description" content="Encuentra tu propiedad ideal para comprar en Santiago. Casas, departamentos y más con ProPlus." />
+        <title>Nuestros Agentes - ProPlus</title>
+        <meta name="description" content="Conoce a nuestro equipo de agentes inmobiliarios expertos en ProPlus. Profesionales comprometidos con tu éxito." />
       </Helmet>
 
       <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8">
@@ -29,10 +29,10 @@ const ComprarPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold text-white mb-6">
-              Comprar <span className="gradient-text">Propiedades</span>
+              Nuestros <span className="gradient-text">Agentes</span>
             </h1>
             <p className="text-xl text-gray-400">
-              Esta página estará disponible pronto con todas las propiedades en venta.
+              Esta página estará disponible pronto con información de nuestro equipo.
             </p>
           </motion.div>
         </div>
@@ -41,4 +41,4 @@ const ComprarPage = () => {
   );
 };
 
-export default ComprarPage;
+export default AgentsPage;

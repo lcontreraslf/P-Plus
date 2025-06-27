@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/use-toast';
 
-const ArrendasPage = () => {
+const LoginPage: React.FC = () => {
   const { toast } = useToast();
 
   React.useEffect(() => {
@@ -17,8 +17,8 @@ const ArrendasPage = () => {
   return (
     <>
       <Helmet>
-        <title>Arrendar Propiedades - ProPlus</title>
-        <meta name="description" content="Encuentra propiedades en arriendo en Santiago. La mejor selección de arriendos con ProPlus." />
+        <title>Iniciar Sesión - ProPlus</title>
+        <meta name="description" content="Accede a tu cuenta de ProPlus para gestionar tus propiedades favoritas y recibir alertas personalizadas." />
       </Helmet>
 
       <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8">
@@ -29,10 +29,10 @@ const ArrendasPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold text-white mb-6">
-              Arrendar <span className="gradient-text">Propiedades</span>
+              Iniciar <span className="gradient-text">Sesión</span>
             </h1>
             <p className="text-xl text-gray-400">
-              Esta página estará disponible pronto con todas las propiedades en arriendo.
+              Esta página estará disponible pronto con el sistema de autenticación.
             </p>
           </motion.div>
         </div>
@@ -41,4 +41,4 @@ const ArrendasPage = () => {
   );
 };
 
-export default ArrendasPage;
+export default LoginPage;

@@ -1,22 +1,22 @@
-import { POPUP_STYLES, getPopupHTMLTemplate } from './plugins/visual-editor/visual-editor-config.js';
+import { POPUP_STYLES, getPopupHTMLTemplate } from './visual-editor-config.ts';
 
-const PLUGIN_APPLY_EDIT_API_URL = '/api/apply-edit';
+const PLUGIN_APPLY_EDIT_API_URL: string = '/api/apply-edit';
 
-const ALLOWED_PARENT_ORIGINS = [
+const ALLOWED_PARENT_ORIGINS: string[] = [
 	'https://horizons.hostinger.com',
 	'https://horizons.hostinger.dev',
 	'https://horizons-frontend-local.hostinger.dev',
 	'http://localhost:4000',
 ];
 
-let popupElement = null;
-let popupTextarea = null;
-let popupSaveButton = null;
-let popupCancelButton = null;
-let currentEditingInfo = null;
-let disabledTooltipElement = null;
+let popupElement: HTMLDivElement | null = null;
+let popupTextarea: HTMLTextAreaElement | null = null;
+let popupSaveButton: HTMLButtonElement | null = null;
+let popupCancelButton: HTMLButtonElement | null = null;
+let currentEditingInfo: { editId: string; targetElement: HTMLElement } | null = null;
+let disabledTooltipElement: HTMLElement | null = null;
 
-let translations = {
+let translations: Record<string, string> = {
   cancel: 'Cancel',
   save: 'Save',
   addText: 'Add text',
@@ -25,7 +25,7 @@ let translations = {
 
 let areStylesInjected = false;
 
-let globalEventHandlers = null;
+let globalEventHandlers: any = null;
 
 function injectPopupStyles() {
   if (areStylesInjected) return;

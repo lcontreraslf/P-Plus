@@ -76,7 +76,7 @@ export const POPUP_STYLES = `
 }
 `;
 
-export function getPopupHTMLTemplate(saveLabel, cancelLabel) {
+export function getPopupHTMLTemplate(saveLabel: string, cancelLabel: string): string {
   return `
     <textarea></textarea>
     <div class="button-container">

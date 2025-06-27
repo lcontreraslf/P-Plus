@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
-const Footer = () => {
+interface FooterLink {
+  name: string;
+  href: string;
+}
+
+const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
+  const footerLinks: Record<string, FooterLink[]> = {
     'Servicios': [
       { name: 'Comprar Propiedades', href: '/comprar' },
       { name: 'Arrendar Propiedades', href: '/arrendar' },
