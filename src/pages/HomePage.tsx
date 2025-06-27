@@ -162,6 +162,18 @@ const HomePage = () => {
       image: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80',
       featured: true,
     },
+    {
+      id: 4,
+      title: 'Loft Creativo en Ñuñoa',
+      type: 'Loft',
+      price: '$320.000.000',
+      location: 'Ñuñoa, Santiago',
+      bedrooms: 1,
+      bathrooms: 1,
+      area: 60,
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80',
+      featured: true,
+    },
   ];
 
   const howItWorksSteps = [
@@ -260,7 +272,7 @@ const HomePage = () => {
                 <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">Propiedades <span className="gradient-text">Destacadas</span></h2>
                 <p className="text-xl text-gray-400 max-w-2xl mx-auto">Una selección exclusiva de las mejores propiedades del mercado.</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {featuredProperties.map((p, i) => (
                   <motion.div
                     key={p.id}
@@ -278,10 +290,11 @@ const HomePage = () => {
                         alt={p.title}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${p.type === 'Departamento' ? 'bg-blue-600' : p.type === 'Casa' ? 'bg-green-600' : 'bg-purple-600'} text-white shadow-lg`}>
+                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${p.type === 'Departamento' ? 'bg-blue-600' : p.type === 'Casa' ? 'bg-green-600' : p.type === 'Penthouse' ? 'bg-purple-600' : 'bg-pink-600'} text-white shadow-lg`}>
                         {p.type === 'Departamento' && <Building className="w-4 h-4" />}
                         {p.type === 'Casa' && <Home className="w-4 h-4" />}
                         {p.type === 'Penthouse' && <Star className="w-4 h-4" />}
+                        {p.type === 'Loft' && <Star className="w-4 h-4" />}
                         {p.type}
                       </div>
                       <button

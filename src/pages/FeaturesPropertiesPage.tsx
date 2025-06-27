@@ -122,7 +122,7 @@ const FeaturesPropertiesPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-bold gradient-text">Propiedades Destacadas</h1>
             <Button onClick={() => navigate(-1)} variant="outline" className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300">Volver</Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {properties.map((p, i) => (
               <motion.div
                 key={p.id}
