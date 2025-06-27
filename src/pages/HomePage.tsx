@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, Bed, Bath, Square, MapPin, Heart, Star, 
+import {
+  Search, Bed, Bath, Square, MapPin, Heart, Star,
   Building, Quote, UserCheck, MessageSquare, Home
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -44,9 +44,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-300">Ubicación</label>
           <div className="relative">
-            <Input 
-              placeholder="Comuna, barrio..." 
-              className="bg-slate-800/50 border-slate-600 text-white pl-10" 
+            <Input
+              placeholder="Comuna, barrio..."
+              className="bg-slate-800/50 border-slate-600 text-white pl-10"
               value={locationValue}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocationValue(e.target.value)}
               onKeyPress={handleLocationKeyPress}
@@ -62,7 +62,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
         </div>
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-300">Tipo de Propiedad</label>
-           <Select>
+          <Select>
             <SelectTrigger className="w-full bg-slate-800/50 border-slate-600 text-white">
               <SelectValue placeholder="Seleccionar tipo" />
             </SelectTrigger>
@@ -193,9 +193,9 @@ const HomePage = () => {
         <meta name="description" content="Descubre las mejores propiedades en Santiago. Compra, arrienda o invierte en bienes raíces con ProPlus, tu socio inmobiliario de confianza." />
       </Helmet>
 
-      <div className="bg-[#0B1120] text-white overflow-x-hidden">
+      <div className="bg-[#0B1120] text-white">
         {/* Hero Section */}
-        <section className="relative h-[40vh] flex flex-col items-center justify-center hero-bg overflow-hidden pt-20">
+        <section className="relative h-[40vh] flex flex-col items-center justify-center hero-bg overflow-hidden pt-28 md:pt-32">
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col items-center">
             <motion.div
@@ -209,12 +209,12 @@ const HomePage = () => {
                 <br />
                 Define tu <span className="gradient-text">Futuro</span>
               </h1>
-              
+
               <p className="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto">
                 La plataforma líder para descubrir propiedades exclusivas en las mejores zonas.
               </p>
             </motion.div>
-            
+
             <div className="mt-10 h-24 flex items-center justify-center w-full">
               <AnimatePresence mode="wait">
                 {!isSearchVisible ? (
@@ -278,10 +278,10 @@ const HomePage = () => {
                         alt={p.title}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${p.type === 'Departamento' ? 'bg-blue-600' : p.type === 'Casa' ? 'bg-green-600' : 'bg-purple-600'} text-white shadow-lg`}> 
-                        {p.type === 'Departamento' && <Building className="w-4 h-4" />} 
-                        {p.type === 'Casa' && <Home className="w-4 h-4" />} 
-                        {p.type === 'Penthouse' && <Star className="w-4 h-4" />} 
+                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${p.type === 'Departamento' ? 'bg-blue-600' : p.type === 'Casa' ? 'bg-green-600' : 'bg-purple-600'} text-white shadow-lg`}>
+                        {p.type === 'Departamento' && <Building className="w-4 h-4" />}
+                        {p.type === 'Casa' && <Home className="w-4 h-4" />}
+                        {p.type === 'Penthouse' && <Star className="w-4 h-4" />}
                         {p.type}
                       </div>
                       <button
@@ -330,13 +330,13 @@ const HomePage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {howItWorksSteps.map((step, i) => (
-                   <motion.div key={i} className="text-center" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.2 }} viewport={{ once: true }}>
+                  <motion.div key={i} className="text-center" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.2 }} viewport={{ once: true }}>
                     <div className="mx-auto w-20 h-20 mb-6 rounded-full flex items-center justify-center bg-blue-900/50 border border-blue-500/30">
                       <step.icon className="w-10 h-10 text-blue-400" />
                     </div>
                     <h3 className="text-2xl font-semibold text-white mb-2">{step.title}</h3>
                     <p className="text-gray-400">{step.description}</p>
-                   </motion.div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -363,46 +363,46 @@ const HomePage = () => {
               </div>
             </div>
           </motion.section>
-          
+
           {/* Testimonials */}
           <motion.section variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="px-4 sm:px-6 lg:px-8 section-gradient py-20">
             <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">Clientes <span className="gradient-text">Felices</span></h2>
-                    <p className="text-xl text-gray-400 max-w-2xl mx-auto">Lo que nuestros clientes dicen sobre su experiencia con ProPlus.</p>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {testimonials.map((t, i) => (
-                        <motion.div key={t.id} className="testimonial-card p-8 rounded-2xl" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.2 }} viewport={{ once: true }}>
-                            <Quote className="w-10 h-10 text-blue-500 mb-4" />
-                            <p className="text-lg text-gray-300 mb-6 italic">"{t.quote}"</p>
-                            <div className="flex items-center">
-                                <img className="w-12 h-12 rounded-full object-cover mr-4" alt={t.name} src={`https://source.unsplash.com/featured/?${encodeURIComponent(t.name)},family,real-estate`} />
-                                <div>
-                                    <p className="font-semibold text-white">{t.name}</p>
-                                    <div className="flex text-yellow-400">
-                                      {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current"/>)}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">Clientes <span className="gradient-text">Felices</span></h2>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto">Lo que nuestros clientes dicen sobre su experiencia con ProPlus.</p>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {testimonials.map((t, i) => (
+                  <motion.div key={t.id} className="testimonial-card p-8 rounded-2xl" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.2 }} viewport={{ once: true }}>
+                    <Quote className="w-10 h-10 text-blue-500 mb-4" />
+                    <p className="text-lg text-gray-300 mb-6 italic">"{t.quote}"</p>
+                    <div className="flex items-center">
+                      <img className="w-12 h-12 rounded-full object-cover mr-4" alt={t.name} src={`https://source.unsplash.com/featured/?${encodeURIComponent(t.name)},family,real-estate`} />
+                      <div>
+                        <p className="font-semibold text-white">{t.name}</p>
+                        <div className="flex text-yellow-400">
+                          {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.section>
 
           {/* CTA / Contact */}
           <motion.section variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto text-center py-20 bg-slate-800/20 rounded-3xl relative overflow-hidden">
-                <div className="absolute inset-0 section-gradient"></div>
-                <div className="relative z-10">
-                    <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">¿Listo para dar el siguiente paso?</h2>
-                    <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">Nuestro equipo está listo para responder tus preguntas y ayudarte a comenzar.</p>
-                    <Button size="lg" onClick={() => handleActionClick('Contacto')} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
-                        <MessageSquare className="w-5 h-5 mr-2" />
-                        Contacta con Nosotros
-                    </Button>
-                </div>
+              <div className="absolute inset-0 section-gradient"></div>
+              <div className="relative z-10">
+                <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">¿Listo para dar el siguiente paso?</h2>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">Nuestro equipo está listo para responder tus preguntas y ayudarte a comenzar.</p>
+                <Button size="lg" onClick={() => handleActionClick('Contacto')} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
+                  <MessageSquare className="w-5 h-5 mr-2" />
+                  Contacta con Nosotros
+                </Button>
+              </div>
             </div>
           </motion.section>
         </div>

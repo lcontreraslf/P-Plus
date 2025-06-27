@@ -15,7 +15,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen">
+      <div className="flex flex-col">
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
