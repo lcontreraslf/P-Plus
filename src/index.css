@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap');
 
 :root {
   --background: 222.2 84% 4.9%;
@@ -48,7 +48,7 @@ body {
 }
 
 .section-gradient {
-  background: radial-gradient(ellipse 80% 50% at 50% -20%,rgba(120,119,198,0.3),hsla(0,0%,100%,0));
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120,119,198,0.3), hsla(0,0%,100%,0));
 }
 
 .hero-bg {

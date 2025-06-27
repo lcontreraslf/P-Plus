@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';  // <-- migrado
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, Bed, Bath, Square, MapPin, Heart, Star,
@@ -8,9 +8,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
+
 
 // Tipado de props para SearchBar
 interface SearchBarProps {
