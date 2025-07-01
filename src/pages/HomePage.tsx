@@ -55,9 +55,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
 
   return (
     <div
-      className={`glass-effect p-4 sm:p-6 rounded-2xl shadow-2xl shadow-black/30 w-full max-w-3xl mx-auto ${
-        className ?? ''
-      }`}
+      className={`glass-effect p-4 sm:p-6 rounded-2xl shadow-2xl shadow-black/30 w-full max-w-3xl mx-auto ${className ?? ''
+        }`}
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         <div className="space-y-2">
@@ -223,22 +222,22 @@ const HomePage = () => {
     title: string;
     description: string;
   }[] = [
-    {
-      icon: Search,
-      title: 'Busca tu Propiedad',
-      description: 'Usa nuestros filtros avanzados para encontrar el hogar de tus sueños.',
-    },
-    {
-      icon: UserCheck,
-      title: 'Contacta un Agente',
-      description: 'Nuestros agentes expertos te guiarán en cada paso del proceso.',
-    },
-    {
-      icon: Building,
-      title: 'Cierra el Trato',
-      description: 'Disfruta de un proceso de compra seguro, rápido y transparente.',
-    },
-  ];
+      {
+        icon: Search,
+        title: 'Busca tu Propiedad',
+        description: 'Usa nuestros filtros avanzados para encontrar el hogar de tus sueños.',
+      },
+      {
+        icon: UserCheck,
+        title: 'Contacta un Agente',
+        description: 'Nuestros agentes expertos te guiarán en cada paso del proceso.',
+      },
+      {
+        icon: Building,
+        title: 'Cierra el Trato',
+        description: 'Disfruta de un proceso de compra seguro, rápido y transparente.',
+      },
+    ];
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -261,7 +260,7 @@ const HomePage = () => {
 
       <div className="bg-[#0B1120] text-white">
         {/* Hero Section */}
-        <section className="relative h-[45vh] md:h-[40vh] flex flex-col items-center justify-center hero-bg overflow-hidden pt-20 md:pt-24">
+        <section className="relative min-h-[60vh] md:min-h-[50vh] flex flex-col items-center justify-center hero-bg py-8 md:py-12">
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col items-center">
             <motion.div
@@ -276,7 +275,7 @@ const HomePage = () => {
                 Define tu <span className="gradient-text">Futuro</span>
               </h1>
 
-              <p className="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto">
+              <p className="text-xl sm:text-2xl text-gray-200 max-w-2xl mx-auto">
                 La plataforma líder para descubrir propiedades exclusivas en las mejores zonas.
               </p>
             </motion.div>
@@ -316,7 +315,23 @@ const HomePage = () => {
               </AnimatePresence>
             </div>
           </div>
+          <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-b from-transparent to-slate-900 z-0"></div>
+
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-purple-400 z-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
+
         </section>
+
 
         <div className="space-y-24 md:space-y-32">
           {/* Featured Properties */}
@@ -325,7 +340,7 @@ const HomePage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="px-4 sm:px-6 lg:px-8 pt-16"
+            className="px-4 sm:px-6 lg:px-8 pt-8"
           >
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
@@ -338,11 +353,11 @@ const HomePage = () => {
               </div>
 
               <div className="property-card-grid grid grid-cols-2 md:grid-cols-4 gap-8">
-  <PropertyCardList
-    properties={featuredProperties.slice(0, visibleCardsCount)}
-    onActionClick={handleActionClick}
-  />
-</div>
+                <PropertyCardList
+                  properties={featuredProperties.slice(0, visibleCardsCount)}
+                  onActionClick={handleActionClick}
+                />
+              </div>
 
 
 
