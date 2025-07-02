@@ -101,7 +101,7 @@ const PropertyCardList: React.FC<PropertyCardListProps> = ({ properties, onActio
                 <MapPin className="w-4 h-4" />
                 <span>{p.location}</span>
               </div>
-              <div className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+              <div className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
                 {p.price}
               </div>
               <div className="flex items-center justify-between text-gray-300 text-base border-t border-slate-700 pt-4 mb-4">

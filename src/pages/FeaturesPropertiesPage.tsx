@@ -181,7 +181,7 @@ const FeaturesPropertiesPage: React.FC = () => {
                     <MapPin className="w-4 h-4" />
                     <span>{p.location}</span>
                   </div>
-                  <div className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+                  <div className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
                     {p.price}
                   </div>
                   <div className="flex items-center justify-between text-gray-300 text-base border-t border-slate-700 pt-4 mb-4">
@@ -198,7 +198,7 @@ const FeaturesPropertiesPage: React.FC = () => {
                       <span>{p.area}m²</span>
                     </div>
                   </div>
-                  <div className="mt-auto flex justify-end">
+                  <div className="mt-auto flex justify-center">
                     <Button className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all">
                       Ver detalles
                     </Button>
